@@ -30,24 +30,40 @@
 
         <div class="form-group">
           <label for="password">Password</label>
-          <input 
-            v-model="form.password" 
-            type="password" 
-            id="password" 
-            required
-            placeholder="At least 6 characters"
-          />
+          <div class="input-wrapper">
+            <input 
+              v-model="form.password" 
+              :type="showPassword ? 'text' : 'password'" 
+              id="password" 
+              required
+              placeholder="At least 6 characters"
+            />
+            <span 
+              class="eye-icon"
+              @click="showPassword = !showPassword"
+            >
+              {{ showPassword ? '🙈' : '👁️' }}
+            </span>
+          </div>
         </div>
 
         <div class="form-group">
           <label for="confirmPassword">Confirm Password</label>
-          <input 
-            v-model="form.confirmPassword" 
-            type="password" 
-            id="confirmPassword" 
-            required
-            placeholder="Confirm password"
-          />
+          <div class="input-wrapper">
+            <input 
+              v-model="form.confirmPassword" 
+              :type="showConfirmPassword ? 'text' : 'password'" 
+              id="confirmPassword" 
+              required
+              placeholder="Confirm password"
+            />
+            <span 
+              class="eye-icon"
+              @click="showConfirmPassword = !showConfirmPassword"
+            >
+              {{ showConfirmPassword ? '🙈' : '👁️' }}
+            </span>
+          </div>
         </div>
 
         <button type="submit" :disabled="loading">
@@ -74,6 +90,8 @@ export default {
     const router = useRouter();
     const loading = ref(false);
     const error = ref('');
+    const showPassword = ref(false);
+    const showConfirmPassword = ref(false);
 
     const form = ref({
       name: '',
@@ -100,6 +118,8 @@ export default {
       form,
       loading,
       error,
+      showPassword,
+      showConfirmPassword,
       handleRegister
     };
   }
@@ -206,6 +226,12 @@ input:focus {
   background: white;
   box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
   transform: translateY(-2px);
+}
+
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
 }
 
 button {
