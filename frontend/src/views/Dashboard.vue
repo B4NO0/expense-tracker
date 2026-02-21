@@ -1,7 +1,7 @@
 <template>
   <div class="dashboard">
     <header class="top-bar">
-      <h1>Expense Tracker</h1>
+      <h1>Expense Tracker and Budget Planner</h1>
       <button @click="logout" class="logout-btn">Logout</button>
     </header>
 
